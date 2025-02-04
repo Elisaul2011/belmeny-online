@@ -5,7 +5,7 @@ import { Slide } from "../../types/slider";
 const slides: Slide[] = [
   {
     title: "INFORME INTEGRADO",
-    year: "2023",
+    // year: "2023",
     image: "/public/vite.svg", // Asegúrate de tener esta imagen en tu carpeta public
     subtitle: "FUTURE-READY",
     description: "IMPULSANDO EL CRECIMIENTO",
@@ -42,7 +42,7 @@ export default function Vendedor() {
           <div className="text-white space-y-6">
             <h1 className="text-5xl md:text-7xl font-bold">
               {slides[currentSlide].title}
-              <div className="text-red-600">{slides[currentSlide].year}</div>
+              {/* <div className="text-red-600">{slides[currentSlide].year}</div> */}
             </h1>
             <button className="px-6 py-2 border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-colors duration-300">
               CONOCE MÁS

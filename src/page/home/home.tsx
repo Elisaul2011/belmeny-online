@@ -1,86 +1,96 @@
-import { useState, useEffect, useRef } from "react";
-import { ChevronDown } from "lucide-react";
+import { useState, useEffect, useRef, useCallback } from "react";
+
 import type { Slide } from "../../types/slider";
-import DynamicSection from "../../componentes/DynamicSection";
+import DynamicSection from "../../componentes/dynamicSection";
 import ParallaxSection from "../../componentes/parallaxSection";
 import Footer from "../../componentes/footer";
+import type React from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides: Slide[] = [
   {
     title: "INFORME INTEGRADO",
-    image: "../../assets/img/INTRO-2.jpg",
+    image: "/src/assets/img/INTRO-2.jpg",
     subtitle: "FUTURE-READY",
     description: "IMPULSANDO EL CRECIMIENTO",
   },
   {
     title: "INNOVACIÓN",
-    image: "../../assets/img/VERT-1.jpg",
+    image: "/src/assets/img/VERT-1.jpg",
     subtitle: "TECNOLOGÍA AVANZADA",
     description: "CREANDO EL FUTURO HOY",
   },
   {
     title: "SOSTENIBILIDAD",
-    image: "../../assets/img/INGCO-2.jpg",
+    image: "/src/assets/img/INGCO-2.jpg",
     subtitle: "ECO-FRIENDLY",
     description: "PROTEGIENDO NUESTRO PLANETA",
   },
 ];
 
-export default function HeroSlider() {
-  const [currentSlide, setCurrentSlide] = useState<number>(0);
-  const [startX, setStartX] = useState<number | null>(null);
+export default function Home() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    setStartX(e.touches[0].clientX);
-  };
-
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    setStartX(e.clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (startX === null) return;
-    const x = e.touches[0].clientX;
-    handleSwipe(x);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (startX === null) return;
-    const x = e.clientX;
-    handleSwipe(x);
-  };
-
-  const handleSwipe = (endX: number) => {
-    if (startX === null) return;
-    const diff = startX - endX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        setCurrentSlide((prev) => (prev + 1) % slides.length);
-      } else {
-        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  const goToSlide = useCallback(
+    (index: number) => {
+      if (!isAnimating) {
+        setIsAnimating(true);
+        setCurrentIndex(index);
+        setTimeout(() => setIsAnimating(false), 500);
       }
-      setStartX(null);
+    },
+    [isAnimating]
+  );
+
+  const goToNext = useCallback(() => {
+    if (!isAnimating) {
+      const nextIndex = (currentIndex + 1) % slides.length;
+      goToSlide(nextIndex);
     }
+  }, [currentIndex, isAnimating, goToSlide]);
+
+  const goToPrevious = useCallback(() => {
+    if (!isAnimating) {
+      const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+      goToSlide(prevIndex);
+    }
+  }, [currentIndex, isAnimating, goToSlide]);
+
+  useEffect(() => {
+    const interval = setInterval(goToNext, 5000);
+    return () => clearInterval(interval);
+  }, [goToNext]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.touches[0].clientX);
   };
 
   const handleTouchEnd = () => {
-    setStartX(null);
-  };
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
 
-  const handleMouseUp = () => {
-    setStartX(null);
+    if (isLeftSwipe) {
+      goToNext();
+    } else if (isRightSwipe) {
+      goToPrevious();
+    }
+
+    setTouchStart(0);
+    setTouchEnd(0);
   };
 
   return (
-    <div className=" h-screen w-full bg-gray-900">
+    <div className="h-screen w-full bg-gray-900">
       {/* Background pattern */}
       <div
         className="absolute inset-0 opacity-20"
@@ -91,6 +101,22 @@ export default function HeroSlider() {
         }}
       />
 
+      <button
+        onClick={goToPrevious}
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg hover:bg-white transition-colors z-10"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+
+      <button
+        onClick={goToNext}
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg hover:bg-white transition-colors z-10"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
+
       {/* Content */}
       <div
         className="relative h-full flex items-center px-8 md:px-16"
@@ -98,19 +124,15 @@ export default function HeroSlider() {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
       >
         <div className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           {/* Text content */}
           <div className="text-white space-y-6">
             <h1 className="text-5xl md:text-7xl font-bold">
-              {slides[currentSlide].title}
+              {slides[currentIndex].title}
             </h1>
-            <p className="text-2xl">{slides[currentSlide].subtitle}</p>
-            <p className="text-xl">{slides[currentSlide].description}</p>
+            <p className="text-2xl">{slides[currentIndex].subtitle}</p>
+            <p className="text-xl">{slides[currentIndex].description}</p>
             <button className="px-6 py-2 border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-colors duration-300">
               CONOCE MÁS
             </button>
@@ -119,9 +141,9 @@ export default function HeroSlider() {
           {/* Image content */}
           <div className="relative">
             <img
-              src={slides[currentSlide].image || "/placeholder.svg"}
+              src={slides[currentIndex].image || "/placeholder.svg"}
               alt="Slide image"
-              className="rounded-lg shadow-2xl w-full h-auto select-none pointer-events-none" // Clases añadidas AQUÍ
+              className="rounded-lg shadow-2xl w-full h-auto select-none pointer-events-none"
             />
           </div>
         </div>
@@ -132,9 +154,9 @@ export default function HeroSlider() {
         {slides.map((_, index) => (
           <button
             key={index}
-            onClick={() => setCurrentSlide(index)}
+            onClick={() => goToSlide(index)}
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              currentSlide === index ? "bg-white w-4" : "bg-gray-400"
+              currentIndex === index ? "bg-white w-4" : "bg-gray-400"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
@@ -143,20 +165,15 @@ export default function HeroSlider() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <div className="relative w-16 h-16">
-          <div className="absolute inset-0 rounded-full border-2 border-white/20" />
-          <div className="absolute inset-0 flex items-center justify-center animate-bounce">
-            <ChevronDown className="w-6 h-6 text-white" />
-          </div>
-        </div>
+        <div className="relative w-16 h-16 inset-0 flex items-center justify-center animate-bounce" />
       </div>
 
       {/* Decorative elements */}
       <div className="absolute top-8 right-8">
-        <div className="w-16 h-1 bg-red-600 transform rotate-45" />
+        <div className="w-16 h-1 bg-blue-300 transform rotate-45" />
       </div>
       <div className="absolute bottom-8 left-8">
-        <div className="w-16 h-1 bg-red-600 transform -rotate-45" />
+        <div className="w-16 h-1 bg-blue-300 transform -rotate-45" />
       </div>
 
       <DynamicSection
@@ -168,7 +185,7 @@ export default function HeroSlider() {
         content="Nuestro compromiso con la sostenibilidad guía cada decisión, asegurando un futuro más verde para todos."
         isRightAligned
       />
-      <ParallaxSection />
+      <ParallaxSection imagen="/src/assets/img/INTRO-1.jpg" />
       <DynamicSection
         title="Excelencia Operativa"
         content="Buscamos la excelencia en cada aspecto de nuestras operaciones, desde la producción hasta el servicio al cliente."

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import menuData from "./menuData";
-//import ThemeToggler from "./themeToggler";
+
 import logo from "../assets/img/logo-belmenygroup.png";
+import React from "react";
 
 const Header = () => {
   // Navbar toggle
@@ -26,11 +27,18 @@ const Header = () => {
 
   // submenu handler
   const [openIndex, setOpenIndex] = useState(-1);
-  const handleSubmenu = (index) => {
+  const handleSubmenu = (index: number) => {
     if (openIndex === index) {
       setOpenIndex(-1);
     } else {
       setOpenIndex(index);
+    }
+  };
+
+  const handleScroll = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -87,12 +95,13 @@ const Header = () => {
                   }`}
                 >
                   <ul className="block lg:flex lg:space-x-12">
-                    {menuData.map((menuItem, index) => (
+                    {menuData.map((menuItem, index: number) => (
                       <li key={menuItem.id} className="group relative">
                         {menuItem.path ? (
                           <Link
                             to={menuItem.path}
-                            className={`flex py-2 text-base text-dark group-hover:opacity-70 dark:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
+                            className={`flex py-2 text-base text-dark group-hover:opacity-70 lg:mr-0 lg:inline-flex lg:py-6 lg:px-0`}
+                            onClick={() => handleScroll("contacto")}
                           >
                             {menuItem.title}
                           </Link>
@@ -117,14 +126,19 @@ const Header = () => {
                                 openIndex === index ? "block" : "hidden"
                               }`}
                             >
-                              {menuItem.submenu.map((submenuItem) => (
-                                <Link
-                                  to={submenuItem.path}
-                                  key={submenuItem.id}
-                                  className="block rounded py-2.5 text-sm text-dark hover:opacity-70 dark:text-white lg:px-3"
-                                >
-                                  {submenuItem.title}
-                                </Link>
+                              {menuData.map((menuItem) => (
+                                <React.Fragment key={menuItem.id}>
+                                  {menuItem.submenu &&
+                                    menuItem.submenu.map((submenuItem) => (
+                                      <Link
+                                        to={submenuItem.path || ""}
+                                        key={submenuItem.id}
+                                        className="block rounded py-2.5 text-sm text-dark hover:opacity-70 dark:text-black lg:px-3"
+                                      >
+                                        {submenuItem.title}
+                                      </Link>
+                                    ))}
+                                </React.Fragment>
                               ))}
                             </div>
                           </>
@@ -141,9 +155,6 @@ const Header = () => {
                 >
                   Iniciar Sesión
                 </Link>
-                {/* <div>
-                  <ThemeToggler />
-                </div> */}
               </div>
             </div>
           </div>

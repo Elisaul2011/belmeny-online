@@ -14,11 +14,11 @@ const DynamicSection: FC<DynamicSectionProps> = ({
 }) => {
   return (
     <section
-      className={`py-20 ${isRightAligned ? "bg-red-600" : "bg-gray-900"}`}
+      className={`py-20 ${isRightAligned ? "bg-blue-600" : "bg-gray-900"}`}
     >
       <div className="container mx-auto px-4">
         <div
-          className={`flex flex-col ${isRightAligned ? "md:flex-row-reverse" : "md:flex-row"} items-center`}
+          className={`flex flex-col ${isRightAligned ? "md:flex-row-reverse gap-8" : "md:flex-row"} items-center`}
         >
           <motion.div
             className="md:w-1/2"

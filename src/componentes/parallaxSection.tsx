@@ -1,12 +1,32 @@
-import { type FC, useEffect, useState } from "react";
+import { type FC, useEffect, useState, useRef } from "react";
 
-const ParallaxSection: FC = () => {
+interface ImagenProps {
+  imagen: string;
+  speed?: number; // Prop opcional para la velocidad del parallax
+}
+
+const ParallaxSection: FC<ImagenProps> = ({ imagen, speed = 0.5 }) => {
   const [offset, setOffset] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null); // Referencia a la sección
 
   useEffect(() => {
     const handleScroll = () => {
-      setOffset(window.pageYOffset);
+      if (sectionRef.current) {
+        // Verifica si la referencia existe
+        const sectionTop = sectionRef.current.offsetTop;
+        const sectionHeight = sectionRef.current.offsetHeight;
+        const scrollTop = window.pageYOffset;
+
+        // Calcula el offset solo si la sección está en el viewport
+        if (
+          scrollTop + window.innerHeight >= sectionTop &&
+          scrollTop <= sectionTop + sectionHeight
+        ) {
+          setOffset(scrollTop - sectionTop);
+        }
+      }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -14,26 +34,18 @@ const ParallaxSection: FC = () => {
   }, []);
 
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative h-screen overflow-hidden" ref={sectionRef}>
       <div
-        className="absolute inset-0 flex items-center justify-center"
+        className="absolute inset-0 w-full h-full"
         style={{
-          transform: `translateY(${offset * 0.5}px)`,
+          backgroundImage: `url(${imagen})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          transform: `translateY(${offset * speed}px)`, // Usa la prop speed
         }}
-      >
-        <h2 className="text-9xl font-bold text-gray-200 opacity-20">
-          INNOVACIÓN
-        </h2>
-      </div>
-      <div className="relative z-10 flex items-center justify-center h-full">
-        <div className="text-center">
-          <h3 className="text-4xl font-bold mb-4">Nuestro Compromiso</h3>
-          <p className="text-xl max-w-2xl mx-auto">
-            Estamos dedicados a impulsar la innovación y el crecimiento
-            sostenible en todas nuestras operaciones.
-          </p>
-        </div>
-      </div>
+      />
+      <div className="absolute inset-0 bg-black opacity-30 z-0"></div>
+      <div className="relative z-10 flex items-center justify-center h-full text-white"></div>
     </section>
   );
 };

@@ -14,6 +14,10 @@ function Login() {
   const { setUserRole } = useAuth();
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   localStorage.removeItem("token");
+  // }, []);
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -32,11 +36,19 @@ function Login() {
     const userRole = roles[username];
 
     if (userRole) {
+      const userData = {
+        username,
+        password,
+      };
+
+      localStorage.setItem("usuario", JSON.stringify(userData));
+
       setUserRole(userRole);
       navigate("/Dashboard-vendedor");
       console.log("Login exitoso!");
     } else {
       setErrorMessage("Usuario no válido.");
+      localStorage.removeItem("usuario");
     }
   };
 
