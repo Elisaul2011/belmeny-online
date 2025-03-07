@@ -6,6 +6,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router";
 
 const sideNavItems = [
   {
@@ -16,7 +17,7 @@ const sideNavItems = [
       { icon: BarChart2, label: "Cobranzas", href: "/info" },
       { icon: BarChart2, label: "Manifiestos", href: "/info" },
       { icon: BarChart2, label: "Consulta Presupuestos", href: "/info" },
-      { icon: BarChart2, label: "Nuevo Presupuesto", href: "/info" },
+      { icon: BarChart2, label: "Nuevo Presupuesto", href: "/nuevo-presupuesto" },
     ],
   },
   {
@@ -78,15 +79,15 @@ export function SideNavigation({ isOpen, onClose }: SideNavigationProps) {
                 className={`space-y-1 ${openSection === section.section ? "block" : "hidden"}`}
               >
                 {section.items.map((item) => (
-                  <a
+                  <Link
                     key={item.label}
-                    href={item.href}
+                    to={item.href}
                     className="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors"
                     onClick={onClose}
                   >
                     <item.icon className="h-5 w-5" />
                     <span>{item.label}</span>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>

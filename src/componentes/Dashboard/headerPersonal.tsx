@@ -1,9 +1,12 @@
 "use client";
 
+
 import { useState } from "react";
 import { Menu, FileText, User } from "lucide-react";
-import { cn } from "../../utils/utils";
+import { cn } from "../../lib/utils";
 import { SideNavigation } from "./sideNavigation";
+import { Link } from "react-router";
+
 
 const documentMenuItems = [
   { label: "Pedidos", href: "/documents/pedidos" },
@@ -11,7 +14,7 @@ const documentMenuItems = [
   { label: "Cobranzas", href: "/documents/cobranzas" },
   { label: "Manifiestos", href: "/documents/manifiestos" },
   { label: "Consulta Presupuestos", href: "/documents/consulta-presupuesto" },
-  { label: "Nuevo Presupuesto", href: "/documents/nuevo-presupuesto" },
+  { label: "Nuevo Presupuesto", href: "/nuevo-presupuesto" },
 ];
 const informationMenuItems = [
   { label: "Clientes", href: "/documents/consulta-cliente" },
@@ -50,6 +53,8 @@ export function Header({
               <Menu className="h-5 w-5" />
             </button>
 
+            
+
             {/* Center - Navigation Items */}
             <div className="hidden lg:flex items-center gap-6">
               {/* Documentos with dropdown */}
@@ -75,13 +80,13 @@ export function Header({
                   )}
                 >
                   {documentMenuItems.map((item) => (
-                    <a
+                    <Link
                       key={item.label}
-                      href={item.href}
+                      to={item.href}
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors"
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -109,13 +114,13 @@ export function Header({
                   )}
                 >
                   {informationMenuItems.map((item) => (
-                    <a
+                    <Link
                       key={item.label}
-                      href={item.href}
+                      to={item.href}
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors"
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
