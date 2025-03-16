@@ -172,15 +172,6 @@ function App() {
     );
 
     setProductsState(productsPerpage);
-
-    // console.log(ITEMS_PER_PAGE);
-    // console.log(products);
-    // console.log(
-    //   products.slice(
-    //     currentPage * ITEMS_PER_PAGE,
-    //     currentPage * ITEMS_PER_PAGE + ITEMS_PER_PAGE
-    //   )
-    // );
   };
 
   return (

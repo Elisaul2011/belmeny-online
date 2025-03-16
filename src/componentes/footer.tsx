@@ -20,7 +20,6 @@ const Footer: FC = () => {
               </a>
             </p>
             <p className="flex items-center justify-start gap-2 ">
-              Teléfono: +1 234 567 890
               <a
                 href="https://wa.me/1234567890" //cambiar numero tlf
                 target="_blank"

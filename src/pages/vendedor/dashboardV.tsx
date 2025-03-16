@@ -1,4 +1,3 @@
-import { Header } from "../../componentes/Dashboard/headerPersonal";
 import { MetricCard } from "../../componentes/Dashboard/metricCard";
 import { SalesChart } from "../../componentes/Dashboard/chart";
 import { CountrySales } from "../../componentes/Dashboard/ventasContar";

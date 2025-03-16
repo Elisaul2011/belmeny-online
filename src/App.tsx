@@ -1,15 +1,18 @@
-import { lazy, Suspense } from "react";
+import { lazy } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
-import LoadingGif from "./assets/3aNC.gif";
-import Home from "./page/home/home";
-import Header from "./componentes/header";
+import Home from "./pages/home/home";
+import Header from "./components/navBar";
 import { ParallaxProvider } from "react-scroll-parallax";
-import Vendedor from "./page/vendedor/dashboardV";
-import Presupuesto from "./page/vendedor/presupuestoV";
+import Vendedor from "./pages/vendedor/dashboardV";
+import Presupuesto from "./pages/vendedor/presupuestoV";
 import { Toaster } from "react-hot-toast";
 import { AuthLayout } from "./layout/AuthLayout";
+import AboutUs from "./pages/about-us/about-us";
+import Contact from "./pages/contact/contact";
+import Catalog from "./pages/catalog/catalog";
+import Distributors from "./pages/distributors/distributors";
 
-const Login = lazy(() => import("./page/login/login"));
+const Login = lazy(() => import("./pages/login/login"));
 
 function App() {
   return (
@@ -20,20 +23,15 @@ function App() {
         <Header />
         <Outlet />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/login"
-            element={
-              <Suspense
-                fallback={
-                  <img src={LoadingGif} alt="Cargando..." loading="lazy" />
-                }
-              >
-                <Login />
-              </Suspense>
-            }
-          />
-          <Route element={<AuthLayout></AuthLayout>}>
+          <Route element={<AuthLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/distributors" element={<Distributors />} />
+          </Route>
+          <Route path="/contact" element={<Contact />} />
+          <Route element={<AuthLayout />}>
             <Route path="/Dashboard-vendedor" element={<Vendedor />} />
             <Route path="/nuevo-presupuesto" element={<Presupuesto />} />
           </Route>
