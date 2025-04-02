@@ -1,5 +1,6 @@
 import type React from "react";
 import { useState } from "react";
+import imagenRRHH from '../../assets/img/RRHH-POSTULACION.jpg'
 
 const JobApplication = () => {
   const [formData, setFormData] = useState({
@@ -52,7 +53,7 @@ const JobApplication = () => {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-white" >
       <div
         className="relative bg-blue-700 py-16 text-center text-white"
         style={{
@@ -207,9 +208,9 @@ const JobApplication = () => {
               </div>
             </div>
 
-            <div className="mt-12">
+            <div className="mt-4 w-auto h-auto mx-auto ">
               <img
-                src="/placeholder.svg?height=400&width=600"
+                src={imagenRRHH}
                 alt="Equipo Belmeny Group"
                 className="rounded-lg shadow-lg"
               />

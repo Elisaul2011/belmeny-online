@@ -3,13 +3,19 @@ import type { MenuItem } from "../types/menu"
 const menuData: MenuItem[] = [
     {
         id: 1,
-        title: "Departamento",
+        title: "Quienes somos",
         newTab: false,
         submenu: [
             {
                 id: 11,
                 title: "Acerca de nosotros",
                 path: "/about-us",
+                newTab: false,
+            },
+            {
+                id: 12,
+                title: "Trabaja con nosotros",
+                path: "/postulate",
                 newTab: false,
             },
         ],

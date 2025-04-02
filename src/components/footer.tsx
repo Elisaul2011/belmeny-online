@@ -6,6 +6,7 @@ import {
   Mail,
   Phone,
   MapPin,
+  Wrench,
 } from "lucide-react";
 
 const location = {
@@ -89,6 +90,47 @@ const Footer = () => {
                   className=" cursor-pointer "
                 >
                   contacto@belmeny.com
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Enlaces Info */}
+          <div>
+            <h3 className="text-lg font-bold mb-4">Enlaces</h3>
+            <ul className="space-y-4">
+              {/* PROXIMAMENTE PAGINA VERT */}
+              {/* <li className="flex">
+                <Wrench className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0" />
+                <a
+                  href={`https://www.ingco.com/ve/`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block relative"
+                >
+                  VERT
+                </a>
+              </li> */}
+              <li className="flex">
+                <Wrench className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0" />
+                <a
+                  href={`https://www.ingco.com/ve/`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block relative"
+                >
+                  INGCO
+                </a>
+              </li>
+              <li className="flex">
+                <Wrench className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0" />
+                <a
+                  href={`https://www.wadfow.com/ve/`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block relative"
+                >
+                  WADFOW
                 </a>
               </li>
             </ul>

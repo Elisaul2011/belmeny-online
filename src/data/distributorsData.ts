@@ -3,35 +3,44 @@ import { Distributor } from '../types/distributors'
 const distributors: Distributor[] = [
     {
         id: 1,
-        name: "Tienda Belmeny Perija",
+        name: "Ingco Sambil Maracaibo",
         address:
-            "Calle Central – Diagonal a la Alcaldía / Centro comercial Ferremarca, local # 1 B – Planta Baja.",
-        image: "/placeholder.svg?height=300&width=500",
+            "Avenida Guajira, Zona Industrial Norte, Maracaibo 4001, Zulia",
+            phone: "04126995648",
+        image: [
+            "/src/assets/img/Sambil_Maracaibo.png",
+            "/src/assets/img/Constru-Ferre.png",
+        ],
         location: {
-            lat: 10.1234,
-            lng: -67.5678,
+            lat: 10.7230,
+            lng: -71.6322,
         },
     },
     {
         id: 2,
-        name: "Tienda Belmeny Villa Rosa",
+        name: "Alkosto Chinita",
         address:
-            "Calle principal de Villa Rosa, diagonal a Corpoelec, al lado de Bodega Los Juanes. Municipio García, Nueva Esparta",
-        image: "/placeholder.svg?height=300&width=500",
+            "C.C. Ciudad Chinita, 1er Piso, Local 102, Maracaibo, Venezuela",
+            phone: "04246168081",
+        image: [
+            "",
+        ],
         location: {
-            lat: 10.9876,
-            lng: -67.1234,
+            lat: 10.6446,
+            lng: -71.6182,
         },
     },
     {
         id: 3,
-        name: "Tienda Belmeny Barquisimeto – Av. Vargas",
-        address: "Av. Vargas entre 24 y 25",
-        phone: "04120321079",
-        image: "/placeholder.svg?height=300&width=500",
+        name: "Constru-Ferre Margarita",
+        address: "Av. Terranova con Llano Adentro, Isla de Margarita",
+        phone: "04122470600",
+        image: [
+            "/src/assets/img/Constru-Ferre.png",
+        ],
         location: {
-            lat: 10.0678,
-            lng: -67.9876,
+            lat: 10.9692,
+            lng: -63.8513,
         },
     },
 ];

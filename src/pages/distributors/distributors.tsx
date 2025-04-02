@@ -1,5 +1,68 @@
-import { MapPin } from "lucide-react";
+import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import Distributor from "../../data/distributorsData";
+import { useState } from "react";
+
+// Crear un componente para el slider de imágenes
+const ImageSlider = ({ image }: { image: string[] }) => {
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % image.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + image.length) % image.length)
+  }
+
+  return (
+    <div className="relative w-full h-48 overflow-hidden">
+      <div
+        className="flex transition-transform duration-500 h-full"
+        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+      >
+        {image.map((image, index) => (
+          <img
+            key={index}
+            src={image || "/placeholder.svg"}
+            alt={`Slide ${index + 1}`}
+            className="w-full h-full object-cover flex-shrink-0"
+          />
+        ))}
+      </div>
+
+      {/* Controles de navegación */}
+      {image.length > 1 && (
+        <>
+          <button
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-1 rounded-full hover:bg-opacity-75 transition-all"
+            onClick={prevSlide}
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-1 rounded-full hover:bg-opacity-75 transition-all"
+            onClick={nextSlide}
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+
+          {/* Indicadores */}
+          <div className="absolute bottom-2 left-0 right-0 flex justify-center space-x-1">
+            {image.map((_, index) => (
+              <button
+                key={index}
+                className={`h-2 rounded-full transition-all ${
+                  currentSlide === index ? "w-4 bg-white" : "w-2 bg-white/50"
+                }`}
+                onClick={() => setCurrentSlide(index)}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
 
 const Distributors = () => {
   const handleMapClick = (lat: number, lng: number) => {
@@ -30,11 +93,7 @@ const Distributors = () => {
               key={distributor.id}
               className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 transition-transform hover:scale-105"
             >
-              <img
-                src={distributor.image}
-                alt={distributor.name}
-                className="w-full h-48 object-cover"
-              />
+              <ImageSlider image={distributor.image}/>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-blue-700 mb-2">
                   {distributor.name}

@@ -2,7 +2,7 @@ import type React from "react";
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown, MenuIcon, X } from "lucide-react";
-import logo from "../assets/img/logo-belmenygroup.png";
+import logo from "../assets/img/logo-BG.png";
 import menuData from "../data/menuData";
 import type { MenuItem } from "../types/menu";
 import { useClickOutside } from "../hooks/useClickOutside";
@@ -138,7 +138,7 @@ const Navbar = () => {
             <div className="flex-shrink-0">
               <Link to="/" className="flex items-center">
                 <img src={logo} className="h-8 w-auto" />
-                <span className="ml-2 text-xs font-medium">Belmeny group</span>
+                <span className="ml-2 font-medium">Belmeny Group</span>
               </Link>
             </div>
 

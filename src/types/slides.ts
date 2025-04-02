@@ -4,4 +4,5 @@ export interface heroSlides {
     bgColor: string
 }
 
-export type slides = heroSlides[]
+
+

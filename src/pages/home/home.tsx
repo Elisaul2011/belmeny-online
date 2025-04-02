@@ -84,8 +84,7 @@ const Home = () => {
             >
               <img
                 className="h-full w-full object-cover"
-                src={slide.imagen || "/placeholder.svg"}
-                alt={`Slide ${slide.id}`}
+                src={slide.imagen}
                 loading={index === 0 ? "eager" : "lazy"}
               />
 

@@ -1,4 +1,3 @@
-import JobApplication from "./jobApplication";
 import Mission from "./mission";
 import Vision from "./vision";
 
@@ -7,7 +6,6 @@ function aboutUs() {
     <div>
       <Mission />
       <Vision />
-      <JobApplication />
     </div>
   );
 }

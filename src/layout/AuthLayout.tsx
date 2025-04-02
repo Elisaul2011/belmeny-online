@@ -1,8 +1,10 @@
 //import { useEffect } from "react";
-import { Outlet } from "react-router";
 //import { validateToken } from "../utils/authentication";
 //import Header from "../components/navBar";
+import { Outlet, useLocation } from "react-router";
 import Footer from "../components/footer";
+import { useEffect } from "react";
+import Scroll from '../components/scrollToTop'
 
 export const AuthLayout = () => {
   //const navigate = useNavigate();
@@ -14,10 +16,19 @@ export const AuthLayout = () => {
   //  }
   //}, []);
 
+  
+    const { pathname } = useLocation()
+  
+    useEffect(() => {
+      window.scrollTo(0, 0)
+    }, [pathname])
+  
+  
   return (
     <div>
-      <Outlet />
-      <Footer />
+      <Outlet/>
+      <Scroll/>
+      <Footer/>
     </div>
   );
 };

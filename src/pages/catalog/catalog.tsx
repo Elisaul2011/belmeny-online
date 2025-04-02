@@ -1,120 +1,6 @@
 import { useState } from "react";
 import { Search, Filter, ChevronDown } from "lucide-react";
-
-interface Product {
-  id: number;
-  name: string;
-  category: string;
-  price: number;
-  image: string;
-  description: string;
-}
-
-const products: Product[] = [
-  {
-    id: 1,
-    name: "Taladro Percutor 20V",
-    category: "Herramientas Eléctricas",
-    price: 149.99,
-    image: "/placeholder.svg?height=300&width=300",
-    description:
-      "Taladro percutor inalámbrico con batería de litio de 20V y 2 velocidades",
-  },
-  {
-    id: 2,
-    name: "Sierra Circular 1500W",
-    category: "Herramientas Eléctricas",
-    price: 189.99,
-    image: "/placeholder.svg?height=300&width=300",
-    description: 'Sierra circular con potencia de 1500W y disco de 7-1/4"',
-  },
-  {
-    id: 3,
-    name: "Juego de Llaves 40 piezas",
-    category: "Herramientas Manuales",
-    price: 69.99,
-    image: "/placeholder.svg?height=300&width=300",
-    description:
-      "Juego de llaves combinadas en milímetros y pulgadas, 40 piezas",
-  },
-  {
-    id: 4,
-    name: "Amoladora Angular 850W",
-    category: "Herramientas Eléctricas",
-    price: 99.99,
-    image: "/placeholder.svg?height=300&width=300",
-    description: 'Amoladora angular de 4-1/2" con potencia de 850W',
-  },
-  {
-    id: 5,
-    name: "Compresor de Aire 50L",
-    category: "Equipos",
-    price: 279.99,
-    image: "/placeholder.svg?height=300&width=300",
-    description: "Compresor de aire con tanque de 50L y 2HP de potencia",
-  },
-  {
-    id: 6,
-    name: "Set de Destornilladores 12 piezas",
-    category: "Herramientas Manuales",
-    price: 29.99,
-    image: "/placeholder.svg?height=300&width=300",
-    description:
-      "Set de destornilladores de precisión con 12 piezas diferentes",
-  },
-  {
-    id: 7,
-    name: "Nivel Láser Autonivelante",
-    category: "Medición",
-    price: 119.99,
-    image: "/placeholder.svg?height=300&width=300",
-    description:
-      "Nivel láser autonivelante con líneas horizontales y verticales",
-  },
-  {
-    id: 8,
-    name: "Caja de Herramientas Metálica",
-    category: "Almacenamiento",
-    price: 49.99,
-    image: "/placeholder.svg?height=300&width=300",
-    description: "Caja de herramientas metálica con 3 cajones y compartimentos",
-  },
-  {
-    id: 9,
-    name: "Soldador Inverter 200A",
-    category: "Soldadura",
-    price: 349.99,
-    image: "/placeholder.svg?height=300&width=300",
-    description:
-      "Soldador inverter con capacidad de 200A para electrodos de hasta 4mm",
-  },
-  {
-    id: 10,
-    name: "Escalera Multiposición",
-    category: "Equipos",
-    price: 89.99,
-    image: "/placeholder.svg?height=300&width=300",
-    description:
-      "Escalera multiposición de aluminio con 12 configuraciones diferentes",
-  },
-  {
-    id: 11,
-    name: "Lijadora Orbital 300W",
-    category: "Herramientas Eléctricas",
-    price: 79.99,
-    image: "/placeholder.svg?height=300&width=300",
-    description:
-      "Lijadora orbital con potencia de 300W y sistema de recolección de polvo",
-  },
-  {
-    id: 12,
-    name: "Cinta Métrica 8m",
-    category: "Medición",
-    price: 12.99,
-    image: "/placeholder.svg?height=300&width=300",
-    description: "Cinta métrica profesional de 8 metros con bloqueo automático",
-  },
-];
+import Products from '../../data/catalog'
 
 const categories = [
   "Todas",
@@ -132,7 +18,7 @@ const Catalog = () => {
   const [sortBy, setSortBy] = useState("name");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  const filteredProducts = products.filter((product) => {
+  const filteredProducts = Products.filter((product) => {
     const matchesSearch =
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -156,10 +42,8 @@ const Catalog = () => {
   return (
     <div className="bg-gray-50">
       <div
-        className="bg-teal-700 py-16 text-center text-white"
+        className="bg-blue-700 py-16 text-center text-white"
         style={{
-          backgroundImage:
-            'linear-gradient(rgba(0, 128, 128, 0.8), rgba(0, 128, 128, 0.8)), url("/placeholder.svg?height=400&width=1200")',
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -168,6 +52,11 @@ const Catalog = () => {
         <p className="max-w-2xl mx-auto text-lg">
           Explora nuestra amplia gama de herramientas y equipos de alta calidad
         </p>
+      </div>
+
+      {/* Catalog for Excel */}
+      <div className="border-b border-blue-300 col d-flex d-none d-md-block">
+        catalogos
       </div>
 
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -182,7 +71,7 @@ const Catalog = () => {
               placeholder="Buscar productos..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500"
+              className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
 
@@ -201,7 +90,7 @@ const Catalog = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="block w-full sm:w-auto pl-3 pr-10 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500"
+              className="block w-full sm:w-auto pl-3 pr-10 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
             >
               <option value="name">Ordenar por nombre</option>
               <option value="price-low">Precio: menor a mayor</option>
@@ -225,7 +114,7 @@ const Catalog = () => {
                     type="radio"
                     checked={selectedCategory === category}
                     onChange={() => setSelectedCategory(category)}
-                    className="h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                   />
                   <label
                     htmlFor={`category-${category}`}
@@ -252,7 +141,7 @@ const Catalog = () => {
                 className="w-full h-64 object-contain p-4"
               />
               <div className="p-6">
-                <span className="text-sm text-teal-600 font-medium">
+                <span className="text-sm text-blue-600 font-medium">
                   {product.category}
                 </span>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">
@@ -262,10 +151,10 @@ const Catalog = () => {
                   {product.description}
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-xl font-bold text-teal-700">
+                  <span className="text-xl font-bold text-blue-700">
                     ${product.price.toFixed(2)}
                   </span>
-                  <button className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700 transition-colors">
+                  <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
                     Agregar
                   </button>
                 </div>
