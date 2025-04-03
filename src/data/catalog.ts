@@ -1,4 +1,4 @@
-import Product from '../types/catalog'
+import {Product} from '../types/catalog'
 
 export const products: Product[] = [
     {
@@ -9,6 +9,7 @@ export const products: Product[] = [
       image: "/placeholder.svg?height=300&width=300",
       description:
         "Taladro percutor inalámbrico con batería de litio de 20V y 2 velocidades",
+      minQuantity: 5,
     },
     {
       id: 2,
@@ -17,6 +18,7 @@ export const products: Product[] = [
       price: 189.99,
       image: "/placeholder.svg?height=300&width=300",
       description: 'Sierra circular con potencia de 1500W y disco de 7-1/4"',
+      minQuantity: 1,
     },
     {
       id: 3,
@@ -26,6 +28,7 @@ export const products: Product[] = [
       image: "/placeholder.svg?height=300&width=300",
       description:
         "Juego de llaves combinadas en milímetros y pulgadas, 40 piezas",
+        minQuantity: 1,
     },
     {
       id: 4,
@@ -34,6 +37,7 @@ export const products: Product[] = [
       price: 99.99,
       image: "/placeholder.svg?height=300&width=300",
       description: 'Amoladora angular de 4-1/2" con potencia de 850W',
+      minQuantity: 1,
     },
     {
       id: 5,
@@ -42,6 +46,7 @@ export const products: Product[] = [
       price: 279.99,
       image: "/placeholder.svg?height=300&width=300",
       description: "Compresor de aire con tanque de 50L y 2HP de potencia",
+      minQuantity: 1,
     },
     {
       id: 6,
@@ -51,6 +56,7 @@ export const products: Product[] = [
       image: "/placeholder.svg?height=300&width=300",
       description:
         "Set de destornilladores de precisión con 12 piezas diferentes",
+        minQuantity: 1,
     },
     {
       id: 7,
@@ -60,6 +66,7 @@ export const products: Product[] = [
       image: "/placeholder.svg?height=300&width=300",
       description:
         "Nivel láser autonivelante con líneas horizontales y verticales",
+        minQuantity: 1,
     },
     {
       id: 8,
@@ -68,6 +75,7 @@ export const products: Product[] = [
       price: 49.99,
       image: "/placeholder.svg?height=300&width=300",
       description: "Caja de herramientas metálica con 3 cajones y compartimentos",
+      minQuantity: 1,
     },
     {
       id: 9,
@@ -77,6 +85,7 @@ export const products: Product[] = [
       image: "/placeholder.svg?height=300&width=300",
       description:
         "Soldador inverter con capacidad de 200A para electrodos de hasta 4mm",
+        minQuantity: 1,
     },
     {
       id: 10,
@@ -86,6 +95,7 @@ export const products: Product[] = [
       image: "/placeholder.svg?height=300&width=300",
       description:
         "Escalera multiposición de aluminio con 12 configuraciones diferentes",
+        minQuantity: 1,
     },
     {
       id: 11,
@@ -95,6 +105,7 @@ export const products: Product[] = [
       image: "/placeholder.svg?height=300&width=300",
       description:
         "Lijadora orbital con potencia de 300W y sistema de recolección de polvo",
+        minQuantity: 1,
     },
     {
       id: 12,
@@ -103,6 +114,7 @@ export const products: Product[] = [
       price: 12.99,
       image: "/placeholder.svg?height=300&width=300",
       description: "Cinta métrica profesional de 8 metros con bloqueo automático",
+      minQuantity: 1,
     },
   ];
 
