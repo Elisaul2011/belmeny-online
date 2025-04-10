@@ -14,7 +14,7 @@ import AboutUs from "./pages/about-us/about-us";
 import Contact from "./pages/contact/contact";
 import Catalog from "./pages/catalog/catalog";
 import Offers from "./pages/offers/offers";
-import Distributors from "./pages/distributors/distributors";
+import Distributors from "./pages/concepts-store/conceptsStore";
 import Register from "./pages/login/register";
 import Postulate from './pages/about-us/jobApplication'
 

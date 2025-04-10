@@ -3,6 +3,10 @@ import { Search, Filter, ChevronDown, ShoppingCart, Plus, Minus, X, Trash2 } fro
 import {Product} from "../../types/catalog";
 import Products from '../../data/catalog'
 import { useCart } from "../../layout/cartContext"
+import ExcelIngco from './XLS Catalogos/excelIngco'
+import ExcelVert from "./XLS Catalogos/excelVert";
+import ExcelWadfow from "./XLS Catalogos/excelWadfow";
+import ExcelLubricante from "./XLS Catalogos/excelLubricante";
 // import { useAuth } from "../../layout/AuthContext"
 // import { useNavigate } from "react-router-dom";
 
@@ -115,9 +119,26 @@ const Catalog = () => {
       </div>
 
       {/* Catalog for Excel */}
-      <div className="border-b border-blue-300 col d-flex d-none d-md-block">
-        catalogos
+      <div className="container mx-auto px-4 py-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {/* INGCO */}
+        <div className="w-full">
+          <ExcelIngco />
+        </div>
+        {/* VERT */}
+        <div className="w-full">
+          <ExcelVert />
+        </div>
+        {/* WADFOW */}
+        <div className="w-full">
+          <ExcelWadfow />
+        </div>
+        {/* LUBRICANTE */}
+        <div className="w-full">
+          <ExcelLubricante />
+        </div>
       </div>
+    </div>
 
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         {/* Search and Filter */}

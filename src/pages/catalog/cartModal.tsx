@@ -40,7 +40,7 @@ const CartModal = () => {
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b">
             <h2 className="text-xl font-bold text-gray-900 flex items-center">
-              <ShoppingBag className="mr-2 h-5 w-5 text-teal-600" />
+              <ShoppingBag className="mr-2 h-5 w-5 text-blue-600" />
               Carrito de Compras
             </h2>
             <button onClick={closeCart} className="text-gray-400 hover:text-gray-500">
@@ -122,11 +122,11 @@ const CartModal = () => {
               <div className="flex space-x-4">
                 <button
                   onClick={clearCart}
-                  className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-teal-700 bg-teal-50 hover:bg-teal-100"
+                  className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-blue-700 bg-blue-50 hover:bg-blue-100"
                 >
                   Vaciar carrito
                 </button>
-                <button className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700">
+                <button className="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700">
                   Proceder al pago
                 </button>
               </div>

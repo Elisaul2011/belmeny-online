@@ -79,7 +79,7 @@ const Distributors = () => {
           backgroundPosition: "center",
         }}
       >
-        <h1 className="text-4xl font-bold mb-4">Distribuidores</h1>
+        <h1 className="text-4xl font-bold mb-4">Tiendas Conceptos</h1>
         <p className="max-w-2xl mx-auto text-lg">
           Encuentra nuestras tiendas exclusivas en todo el país
         </p>

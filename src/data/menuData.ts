@@ -41,8 +41,8 @@ const menuData: MenuItem[] = [
     },
     {
         id: 3,
-        title: "Distribuidores",
-        path: "/distributors",
+        title: "Tiendas Conceptos",
+        path: "/concepts-store",
         newTab: false,
     },
     {
