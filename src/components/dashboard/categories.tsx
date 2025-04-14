@@ -46,3 +46,5 @@ export function Categories() {
     </div>
   );
 }
+
+export default Categories;

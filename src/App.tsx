@@ -1,13 +1,13 @@
 import { lazy } from "react";
 import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
 import Home from "./pages/home/home";
-import Header from "./components/navBar";
 import Vendedor from "./pages/vendedor/dashboardV";
 import Supervisor from './pages/supervisor/components/dashboardS'
 import Gerente from './pages/gerente/components/dashboardG'
 import Presupuesto from "./pages/vendedor/presupuestoV";
 import { Toaster } from "react-hot-toast";
 import { AuthLayout } from "./layout/AuthLayout";
+import AuthLayoutP from './layout/AuthLayoutP'
 //import { AuthProvider } from "./layout/AuthContext"
 import {CartProvider} from './layout/cartContext'
 import AboutUs from "./pages/about-us/about-us";
@@ -27,9 +27,7 @@ function App() {
   return (
   <CartProvider>
     <Router>
-        
           <div>
-            <Header />
             <Outlet />
             <Routes>
             {/* <AuthProvider> */}
@@ -39,14 +37,14 @@ function App() {
                 <Route path="/about-us" element={<AboutUs />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/catalog" element={<Catalog />} />
-                <Route path="/distributors" element={<Distributors />} />
+                <Route path="/concepts-store" element={<Distributors />} />
                 <Route path="/offers" element={<Offers />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/postulate" element={<Postulate />} />
               </Route>
               <Route path="/contact" element={<Contact />} />
               {/* <Route path="/prueba" element={<P />} /> */}
-              <Route element={<AuthLayout />}>
+              <Route element={<AuthLayoutP />}>
                 <Route path="/dashboard-vendedor" element={<Vendedor />} />
                 <Route path="/dashboard-supervisor" element={<Supervisor />} />
                 <Route path="/dashboard-gerente" element={<Gerente />} />

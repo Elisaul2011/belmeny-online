@@ -1,6 +1,3 @@
-"use client";
-
-
 import { useState } from "react";
 import { Menu, FileText, User } from "lucide-react";
 import { cn } from "../../lib/utils";
@@ -154,3 +151,5 @@ export function Header({
     </>
   );
 }
+
+export default Header;

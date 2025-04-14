@@ -1,8 +1,8 @@
-import { MetricCard } from "../../componentes/Dashboard/metricCard";
-import { SalesChart } from "../../componentes/Dashboard/chart";
-import { CountrySales } from "../../componentes/Dashboard/ventasContar";
-import { Categories } from "../../componentes/Dashboard/categories";
-import { ProductComparisonChart } from "../../componentes/Dashboard/grafico";
+import { MetricCard } from "../../components/dashboard/metricCard";
+import { SalesChart } from "../../components/dashboard/chart";
+import { CountrySales } from "../../components/dashboard/ventasContar";
+import { Categories } from "../../components/dashboard/categories";
+import { ProductComparisonChart } from "../../components/dashboard/grafico";
 import { DollarSign, Users, UserPlus, ShoppingCart } from "lucide-react";
 
 export default function Dashboard() {
